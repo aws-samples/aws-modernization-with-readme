@@ -1,40 +1,29 @@
 ---
-title: "Introductio"
+title: "Getting Started"
 chapter: true
 weight: 1
 ---
 
-# Introduction
+# Getting Started
 
+![ReadMe AWS System Overview](/images/system-overview.png)
 
+## Solution Overview
 
-## Learning Objectives <!-- MODIFY THIS SUBHEADING -->
+This example implementation reacts to the changes to the API Gateway made manually or through a CI/CD pipeline. It will synchronize changes from the API Gateway to the developer portal in ReadMe. It does this by exporting the API Gateway OpenAPI definition and uploading changes to ReadMe. Optionally, it will delete the existing definition when you delete an API Gateway endpoint. Implementation uses the following resources:
 
-This paragraph block should highlight the learning objectives of the workshop. A bulleted list works well for this purpose.
+1. **Amazon API Gateway** that gets changed manually or by an automated process
+1. **Amazon EventBridge** that receives events whenever you deploy API Gateway stage
+1. **AWS Lambda function** that is invoked by the EventBridge and synchronizes definition to ReadMe
+1. **AWS Systems Manager Parameter Store** to store Lambda configuration parameters
+1. **AWS Secrets Manager** to store ReadMe API key used for authentication
+1. **Amazon CloudWatch** with alarms used for synchronization error notifications
+1. **Amazon Simple Notification Service (SNS)** to deliver error notifications to the subscribed email recipients
 
-## Workshop Structure <!-- MODIFY THIS SUBHEADING -->
-This paragraph block should be utilized to briefly explain the submodules that are going to be presented as well as the approximate total time for the workshop and individual submodules. <br>
+## Prerequisites
 
-For example:
-<ul>
-    <li> Prerequisites *(15 minutes)* </li>
-    <li> Setting up an account for the solution *(15 minutes)* </li>
-    <li> Module 1: Module 1 Title *(30 minutes)* </li>
-    <li> Module 2: Module 2 Title *(30 minutes)* </li>
-    <li> Module 3: Module 3 Title *(30 minutes)* </li>
-</ul>
-
-{{% notice info %}}
-<p style='text-align: left;'>
-**REMOVE:** With the exception of _index.md, the module folders and filenames should be changed to better reflect their content, i.e. 1_Planning as the folder and 11_HowToBegin as the first submodule. Changing the "weight" value of the header is ultimately what reflects the order the modules are presented.
-</p>
-{{% /notice %}}
-
-**REMOVE:** Every introduction page should include the following warning label.
-
-{{% notice warning %}}
-The examples and sample code provided in this workshop are intended to be consumed as instructional content. These will help you understand how various AWS services can be architected to build a solution while demonstrating best practices along the way. These examples are not intended for use in production environments.
-{{% /notice %}}
-
-### Next Section Heading <!-- MODIFY THIS HEADING -->
-This paragraph block can optionally be utilized to lead into the next section of the workshop.
+This workshop requires:
+1. An AWS account.  If you don't wish to use your own account, you can use the one that is generated for the workshop by clicking HERE (link will go here).
+1. CLI tool for Serverless Application Models (SAM).  
+1. ReadMe account and a project within that ReadMe account.  
+1. [GitHub CLI](https://cli.github.com/)
