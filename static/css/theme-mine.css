@@ -152,3 +152,7 @@ div.notices p:first-child:before {
 #chapter p, #chapter h3 {
     text-align: left;
 }
+
+.logo {
+    width: 10px;
+}
